@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
+import React from 'react'
 import './Todo.css'
 
-export default class Todo extends Component {
-    render() {
+export default function Todo(props) {
         return (
             <div
-            className={`item${this.props.todo.selected ? " selected" : ""}`}
-             onClick={(e) => this.props.toggle(this.props.todo.id)}>
-                {this.props.todo.name}
+            className={`item${props.todo.selected ? " selected" : ""}`}
+             onClick={(e) => props.toggle(props.todo.id)}>
+                {props.todo.name}
             </div>
         )
-    }
 }
