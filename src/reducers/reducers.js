@@ -7,12 +7,15 @@ export const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
-    case "SOME_ACTION":
-      return {
-        ...state,
-        todos: state.todos.filter(todo => !todo.completed),
-        completedTodos: newCompletedTodos
-      };
+      case "ADD_TODO":
+        return {
+          ...state,
+            todos:  [...state.todos,  {
+            item: action.payload,
+            completed: false,
+            id: Date.now()
+              }]
+        }
 
       default:
         return state;
