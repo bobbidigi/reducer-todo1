@@ -27,16 +27,15 @@ function App() {
         return todo;
       })
       console.log(newTodos)
-      // setTodos(newTodos)
       dispatch({type: 'TOGGLE_TODO', payload: newTodos})
   };
 
   const deleteItem = (e) => {
       e.preventDefault();
-      let newTodos = todos.filter(item => {
+      let newTodos = state.todos.filter(item => {
         return !item.selected;
       })
-      setTodos(newTodos)
+      dispatch({type: "DELETE_TODO", payload: newTodos})
   };
 
   const addItem = (e, item) => {
