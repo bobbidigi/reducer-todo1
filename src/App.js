@@ -13,11 +13,11 @@ function App() {
   
   const [todos, setTodos] = useState(data)
   const [state, dispatch] = useReducer(reducer, initialState)
-  console.log(state.todos)
-  console.log(todos)
+  // console.log(state.todos)
+  // console.log(todos)
 
   const toggle = itemId => {
-      let newTodos = todos.map(todo => {
+      let newTodos = state.todos.map(todo => {
         if (itemId === todo.id) {
           return {
             ...todo,
@@ -26,7 +26,9 @@ function App() {
         }
         return todo;
       })
-      setTodos(newTodos)
+      console.log(newTodos)
+      // setTodos(newTodos)
+      dispatch({type: 'TOGGLE_TODO', payload: newTodos})
   };
 
   const deleteItem = (e) => {
@@ -42,9 +44,9 @@ function App() {
     const newItem = {
       item: item,
       id: Date.now(),
-      completed: false
+      selected: false
     };
-    
+
     dispatch({type: 'ADD_TODO', payload: newItem})
   }
 

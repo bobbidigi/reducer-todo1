@@ -1,7 +1,7 @@
 export const initialState = {
   todos: [{
   item: "Learn about reducers",
-  completed: false,
+  selected: false,
   id: 3892987589}]
 }
 
@@ -11,6 +11,11 @@ export function reducer(state = initialState, action) {
         return {
           ...state,
             todos:  [...state.todos, action.payload]
+        }
+      case "TOGGLE_TODO":
+        return {
+          ...state,
+            todos:  [...action.payload]
         }
 
       default:
