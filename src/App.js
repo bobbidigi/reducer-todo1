@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useState, useReducer} from "react";
 import TodoList from "./components/TodoComponents/TodoList";
 import TodoForm from "./components/TodoComponents/TodoForm";
+import {initialState, reducer} from './reducers/reducers';
 
 let data = [
   { name: "cheese", id: 1, selected: false },
@@ -11,6 +12,9 @@ let data = [
 function App() {
   
   const [todos, setTodos] = useState(data)
+  const [state, dispatch] = useReducer(reducer, initialState)
+  console.log(state.todos)
+  console.log(todos)
 
   const toggle = itemId => {
       let newTodos = todos.map(todo => {
@@ -47,7 +51,7 @@ function App() {
     return (
       <div>
         <TodoForm addItem={addItem} />
-        <TodoList todos={todos} toggle={toggle} />
+        <TodoList todos={state.todos} toggle={toggle} />
         <button onClick={deleteItem}>Clear Selected</button>
       </div>
     );

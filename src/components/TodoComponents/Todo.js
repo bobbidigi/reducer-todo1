@@ -6,7 +6,7 @@ export default function Todo(props) {
             <div
             className={`item${props.todo.selected ? " selected" : ""}`}
              onClick={(e) => props.toggle(props.todo.id)}>
-                {props.todo.name}
+                {props.todo.item}
             </div>
         )
 }
