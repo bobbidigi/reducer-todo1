@@ -7,22 +7,44 @@ export const initialState = {
 
 export function reducer(state = initialState, action) {
   switch (action.type) {
+      // add
       case "ADD_TODO":
+        const newItem = {
+          item: action.payload,
+          id: Date.now(),
+          selected: false
+        };
         return {
           ...state,
-            todos:  [...state.todos, action.payload]
+            todos:  [...state.todos, newItem]
         }
-      case "TOGGLE_TODO":
-        return {
-          ...state,
-            todos:  [...action.payload]
-        }
-      case "DELETE_TODO":
-          return {
-            ...state,
-              todos:  [...action.payload]
-        }  
 
+        // toggle
+      case "TOGGLE_TODO":
+        let newTodos = state.todos.map(todo => {
+          if (action.payload === todo.id) {
+            return {
+              ...todo,
+              selected: !todo.selected
+            };
+          }
+          return todo;
+        })
+        return {
+          ...state,
+            todos:  [...newTodos]
+        }
+      // delete  
+      case "DELETE_TODO":
+        let deletedTodos = state.todos.filter(item => {
+          return !item.selected;
+        })
+        return {
+          ...state,
+          todos:  [...deletedTodos]
+        }
+        
+      // default    
       default:
         return state;
   }
