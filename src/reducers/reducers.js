@@ -10,11 +10,7 @@ export function reducer(state = initialState, action) {
       case "ADD_TODO":
         return {
           ...state,
-            todos:  [...state.todos,  {
-            item: action.payload,
-            completed: false,
-            id: Date.now()
-              }]
+            todos:  [...state.todos, action.payload]
         }
 
       default:

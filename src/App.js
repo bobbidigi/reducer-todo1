@@ -40,12 +40,12 @@ function App() {
   const addItem = (e, item) => {
     e.preventDefault();
     const newItem = {
-      name: item,
+      item: item,
       id: Date.now(),
       completed: false
     };
-
-      setTodos([...todos, newItem])
+    
+    dispatch({type: 'ADD_TODO', payload: newItem})
   }
 
     return (
